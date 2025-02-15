@@ -64,7 +64,6 @@ async function initMap()
                                     <h2>${store} - ${locationName}</h2>
                                 </div>
                                 <p style="margin-top: 5px; text-align: center;">${storeData.message}</p>
-                                <p>Address: <a href="${locationData.link}" target="_blank">${locationData.address}</a></p>
                                 <p>Visit their website: <a href="${storeData.website}" target="_blank">${store}</a></p>
                             </div>
                         `

@@ -1,0 +1,60 @@
+{
+    "Turkstra Lumber":{
+        "icon": "images/Turkstra-Lumber.png",
+        "website":"https://turkstralumber.com/",
+        "message": "Turkstra Lumber is a family-owned business that sells lumber, doors, windows, and other building materials.",
+        "locations":{
+        "Dundas": {
+                "position": "43.26786604976088, -79.97291571959232",
+                "address":"355 Mill St, Dundas, ON L9H 2L9"
+            },
+            "Hamilton": {
+                "position": "43.22224905949846, -79.87426932266203",
+                "address":"1050 Upper Wellington St, Hamilton, ON L9A 3S6"
+            },
+            "Stoney Creek": {
+                "position": "43.23322436068611, -79.7276638619204",
+                "address":"370 Green Rd, Stoney Creek, ON L8E 2B3"
+            },
+            "Waterdown": {
+                "position": "43.33243878213058, -79.89861280654668",
+                "address":""
+            }
+        }
+    },
+    "Home Depot": {
+        "icon": "images/Home-Depot.png",
+        "website":"https://www.homedepot.com",
+        "message": "The world’s largest home improvement retailer. We sell construction products, tools, and services.",
+        "locations":{
+            "West Hamilton": {
+                "position": "43.230282946258654, -79.94469864219131",
+                "address":""
+            },
+            "East Hamilton": {
+                "position": "43.240175167625445, -79.757400839547",
+                "address":""
+                
+            }
+        }
+    },
+    "RONA": {
+        "icon": "images/Rona-Logo.png",
+        "website":"https://www.rona.ca/en",
+        "message": "A Canadian home improvement company that sells products for building and renovation projects.",
+        "locations":{
+            "Hamilton": {
+                "position": "43.18966692205744, -79.8379702711382",
+                "address":""
+            },
+            "Ancaster": {
+                "position": "43.199877553726324, -80.01955111236569",
+                "address":""
+            },
+            "Waterdown": {
+                "position": "43.31354598215259, -79.91085660004917",
+                "address":""
+            }
+        }
+    }
+}

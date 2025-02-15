@@ -11,8 +11,6 @@ let map;
 async function initMap()
 {
 
-    locations = await loadLocationsData()
-    let currentInfoWindow = null;
     // This will create a new Google Map object, and the variable map will 
     // contain a reference to the object.  The first argument is the element 
     // to place the map into, and the 2nd argument is a JSON with keys and 
@@ -27,13 +25,9 @@ async function initMap()
         zoom: 12,
         mapId: "Assignment_2_MAP_APPLICATION"
     });
-    map.addListener("click", () => {
-        if (currentInfoWindow) {
-            currentInfoWindow.close();
-        }
-    });
 
-
+    locations = await loadLocationsData()
+    let currentInfoWindow = null;
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
             let storeData = locations[store];
@@ -64,8 +58,7 @@ async function initMap()
                                     <h2>${store} - ${locationName}</h2>
                                 </div>
                                 <p style="margin-top: 5px; text-align: center;">${storeData.message}</p>
-                                <p>Address: <a href="${locationData.link}" target="_blank">${locationData.address}</a></p>
-                                <p>Visit their website: <a href="${storeData.website}" target="_blank">${store}</a></p>
+                                <p>Visit their website: <a href="${storeData.website}">${store}</a></p>
                             </div>
                         `
                     });

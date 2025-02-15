@@ -11,8 +11,6 @@ let map;
 async function initMap()
 {
 
-    locations = await loadLocationsData()
-    let currentInfoWindow = null;
     // This will create a new Google Map object, and the variable map will 
     // contain a reference to the object.  The first argument is the element 
     // to place the map into, and the 2nd argument is a JSON with keys and 
@@ -27,20 +25,19 @@ async function initMap()
         zoom: 12,
         mapId: "Assignment_2_MAP_APPLICATION"
     });
-    map.addListener("click", () => {
-        if (currentInfoWindow) {
-            currentInfoWindow.close();
-        }
-    });
 
-
+    locations = await loadLocationsData()
+    markers = []
+    console.log(locations);
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
             let storeData = locations[store];
+    
             if (!storeData.locations) {
                 console.warn(`No locations found for ${store}`);
                 continue;
             }
+    
             for (const locationName in storeData.locations) {
                 if (storeData.locations.hasOwnProperty(locationName)) {
                     let locationData = storeData.locations[locationName];
@@ -57,32 +54,10 @@ async function initMap()
                         title: `${store} - ${locationName}`
                     });
                     const infoWindow = new google.maps.InfoWindow({
-                        content: `
-                            <div id="info-window-content">
-                                <div id="info-window-header">
-                                    <img src="${storeData.icon}" alt="${store} - ${locationName}">
-                                    <h2>${store} - ${locationName}</h2>
-                                </div>
-                                <p style="margin-top: 5px; text-align: center;">${storeData.message}</p>
-                                <p>Address: <a href="${locationData.link}" target="_blank">${locationData.address}</a></p>
-                                <p>Visit their website: <a href="${storeData.website}" target="_blank">${store}</a></p>
-                            </div>
-                        `
-                    });
-                    marker.addListener("click", () => {
-                        if (currentInfoWindow) {
-                            currentInfoWindow.close();
-                        }
-
-                        infoWindow.open({
-                            anchor: marker,
-                            map: map,
-                            shouldFocus: false,
-                        });
-                        currentInfoWindow = infoWindow;
+                        content: store['message']
                     });
     
-
+                    markers.push(marker);
                 }
             }
         }

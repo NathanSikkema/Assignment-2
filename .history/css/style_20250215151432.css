@@ -1,0 +1,8 @@
+#info-window-content {
+    width: 250px;
+}
+#info-window-header {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}

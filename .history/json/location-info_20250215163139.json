@@ -5,24 +5,24 @@
         "message": "Turkstra Lumber is a family-owned business that sells lumber, doors, windows, and other building materials.",
         "locations":{
         "Dundas": {
-                "position": "43.2678927,-79.9755095",
+                "position": "43.26786604976088, -79.97291571959232",
                 "address":"355 Mill St, Dundas, ON L9H 2L9",
-                "link": "https://www.google.com/maps/place/Turkstra+Lumber+-+Dundas/@43.2678927,-79.9755095,17z/data=!3m1!4b1!4m6!3m5!1s0x882c847bba7ad7ed:0xee25e2cb2ab5fe38!8m2!3d43.2678888!4d-79.9729346!16s%2Fg%2F1vn_zlpx?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+                "link": ""
             },
             "Hamilton": {
-                "position": "43.2222857,-79.8769381",
+                "position": "43.22224905949846, -79.87426932266203",
                 "address":"1050 Upper Wellington St, Hamilton, ON L9A 3S6",
-                "link": "https://www.google.com/maps/place/Turkstra+Lumber+-+Hamilton/@43.2222857,-79.8769381,16z/data=!3m1!4b1!4m6!3m5!1s0x882c9a55e43fd585:0xada079d086608a1c!8m2!3d43.2222818!4d-79.8743632!16s%2Fg%2F1tkkvh_m?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+                "link": ""
             },
             "Stoney Creek": {
-                "position": "43.2332202,-79.7303132",
+                "position": "43.23322436068611, -79.7276638619204",
                 "address":"370 Green Rd, Stoney Creek, ON L8E 2B3",
-                "link": "https://www.google.com/maps/place/Turkstra+Lumber+-+Stoney+Creek/@43.2332202,-79.7303132,16z/data=!3m1!4b1!4m6!3m5!1s0x882ca26d59a30a19:0x2aa0132c4730712!8m2!3d43.2332163!4d-79.7277383!16s%2Fg%2F1td7ttyv?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+                "link": ""
             },
             "Waterdown": {
-                "position": "43.33245,-79.9012038",
+                "position": "43.33243878213058, -79.89861280654668",
                 "address":"61 Hamilton St N, Waterdown, ON L0R 2H6",
-                "link": "https://www.google.com/maps/place/Turkstra+Lumber+-+Waterdown/@43.33245,-79.9012038,17z/data=!3m1!4b1!4m6!3m5!1s0x882c9d42ea8e89e3:0x7e8e6374e60c3e0d!8m2!3d43.3324461!4d-79.8986289!16s%2Fg%2F1tqg0zsq?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+                "link": ""
             }
         }
     },
