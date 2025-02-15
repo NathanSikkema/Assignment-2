@@ -49,20 +49,16 @@
         "website":"https://www.homehardware.ca/en",
         "message": "The world’s largest home improvement retailer. We sell construction products, tools, and services.",
         "locations":{
-            "Naborhood": {
-                "position": "43.255284,-79.8349498",
-                "address":"797 Barton St E, Hamilton, ON L8L 3B2",
-                "link": "https://www.google.com/maps/place/Naborhood+Home+Hardware/@43.255284,-79.8349498,17z/data=!3m1!4b1!4m6!3m5!1s0x882c9bfd8c7651cb:0xc0238b679db93b4!8m2!3d43.2552802!4d-79.8300789!16s%2Fg%2F1tcwrshx?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+            "Ancaster": {
+                "position": "43.2302817,-79.9472971",
+                "address":"122 Martindale Crescent, Ancaster, ON L9K 1J9",
+                "link": "https://www.google.com/maps/place/The+Home+Depot/@43.2302817,-79.9472971,17z/data=!3m1!4b1!4m6!3m5!1s0x882c851f3c4bac7f:0xae13628eedf348bc!8m2!3d43.2302778!4d-79.9447222!16s%2Fg%2F1wbryf09?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
             },
-            "Westcliffe": {
-                "position": "43.2336665,-79.9150331",
-                "address":"Westcliffe Mall, 632 Mohawk Rd W, Hamilton, ON L9C 1X6",
-                "link": "https://www.google.com/maps/place/Westcliffe+Home+Hardware/@43.2336665,-79.9150331,16z/data=!3m1!4b1!4m6!3m5!1s0x882c9b28fb4b8eb1:0x548bcd49ba0ecb35!8m2!3d43.2336627!4d-79.9101622!16s%2Fg%2F1vntkjjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
-            },
-            "Weeks": {
-                "position": "43.2653966,-79.9262599",
-                "address":"640 Queenston Rd, Hamilton, ON L8K 4H6",
-                "link": "https://www.google.com/maps/place/Weeks+Home+Hardware/@43.2653966,-79.9262599,11z/data=!4m10!1m2!2m1!1sHome+Hardware!3m6!1s0x882c98e4ff28b6e1:0x24fa155c491e4279!8m2!3d43.2298466!4d-79.7766782!15sCg1Ib21lIEhhcmR3YXJlIgOIAQFaDyINaG9tZSBoYXJkd2FyZWgBkgEWaG9tZV9pbXByb3ZlbWVudF9zdG9yZeABAA!16s%2Fg%2F11g816p61h?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+            "Hamilton": {
+                "position": "43.2401809,-79.7623056",
+                "address":"350 Centennial Pkwy N, Hamilton, ON L8E 2Y4",
+                "link": "https://www.google.com/maps/place/The+Home+Depot/@43.2401809,-79.7623056,17z/data=!3m1!4b1!4m6!3m5!1s0x882c98beda4b503d:0xa07968a30945ed8b!8m2!3d43.2401771!4d-79.7574347!16s%2Fg%2F1tzzw474?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+                
             }
         }
     },
