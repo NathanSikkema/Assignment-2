@@ -8,7 +8,7 @@ let map;
 // this is how the library knows to call this initMap function when it 
 // is done loading.  We could change the name of the function in that 
 // URL if we wanted to call it something different.
-function initMap()
+async function initMap()
 {
 
     // This will create a new Google Map object, and the variable map will 
@@ -18,9 +18,45 @@ function initMap()
     // provide center and zoom values as part of this object.  The mapId 
     // will be needed if we want to use features like markers, technically
     // we could leave it off this example and it would still work!
+
+
     map = new google.maps.Map(document.getElementById("map"), 
     {center: { lat: 43.2387, lng: -79.8881 },
         zoom: 12,
         mapId: "Assignment_2_MAP_APPLICATION"
     });
+
+    locations = await loadLocations()
+    markers = []
+    console.log(locations);
+    for (const key in locations) {
+        if (locations.hasOwnProperty(key)) {
+            let locationData = locations[key];
+            let position = locationData.position;
+            const [lat, lng] = position.split(",").map(Number);
+            position = { lat, lng };
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+                position: position,
+                map: map,
+                title: key
+            });
+            markers.push(marker);
+        }
+    }
+
+
+}
+async function loadLocations(){
+    try {
+        const response = await fetch('json/location-info.json');
+        if (!response.ok) {
+            console.error('Error loading JSON:', response.statusText);
+            return [];
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching JSON:', error);
+        return [];
+    }
 }
