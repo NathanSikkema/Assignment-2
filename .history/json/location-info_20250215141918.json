@@ -1,0 +1,38 @@
+{
+    "Mohawk College": {
+        "position": {"lat":43.23964309692383, "lng":-79.8873519897461}
+    },
+    "Turkstra Lumber - Dundas": {
+        "position": {"lat":43.26786604976088, "lng":-79.97291571959232}
+        
+    },
+    "Turkstra Lumber - Hamilton": {
+        "position": "43.22224905949846, -79.87426932266203"
+    },
+    "Turkstra Lumber - Stoney Creek": {
+        "position": "43.23322436068611, -79.7276638619204"
+    },
+    "Turkstra Lumber - Waterdown": {
+        "position": "43.33243878213058, -79.89861280654668"
+    },
+
+    "Home Depot 1": {
+        "position": "43.23270022999138, -79.95093230354927"
+    },
+    "Home Depot 2": {
+        "position": "43.194967212558474, -79.8227260284251"
+    },
+    "Home Depot 3": {
+        "position": "43.36302057464476, -79.8094677985026"
+    },
+
+    "RONA Hamilton (Rymal Road)": {
+        "position": "43.19208493665068, -79.83109988217481"
+    },
+    "RONA+ Ancaster": {
+        "position": "43.20229946480177, -80.01292648909012"
+    },
+    "RONA+ Waterdown": {
+        "position": "43.31768803913067, -79.89302838468844"
+    }
+}

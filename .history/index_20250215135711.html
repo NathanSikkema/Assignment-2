@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!--
+            Author............ : Nathan Sikkema
+            Student Number.... : 000911571
+            Program........... : Software Development
+            Course............ : Mobile Web Programming
+            Type.............. : HTML
+            Start Date........ : 2025 02 14
+            End Date.......... : 
+            Duration.......... : 
+            Last Modified..... : 2025 02 14
+        -->
+            
+        <title>
+            Map Application
+        </title>
+        <!-- <link rel="stylesheet" href="css/style.css">-->
+        <style>
+            /* The height and width of the div will become the dimensions of the map! */
+            #map {
+              height: 700px;
+              width: 1400px;
+            }
+          </style>
+    </head>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtQItp7jhyNZXFmlBnXb1eTFnAfpCjgUw&loading=async&callback=initMap&libraries=marker">
+    </script>
+    <body>
+        <h1>Map Application</h1>
+        <div>
+            <div id="map"></div>
+            <div class="buttons">
+                <button class="btn primary-btn">Show Turkstra Lumber</button>
+                <button class="btn primary-btn">Show Home Depot</button>
+                <button class="btn primary-btn">Show Gas Stations</button>
+                <button class="btn primary-btn">Show Home Hardware</button>
+                <button class="btn primary-btn">Show Rona</button>
+            </div>
+        </div>
+        <script src="js/map.js"></script>
+      </body>
+</html>
