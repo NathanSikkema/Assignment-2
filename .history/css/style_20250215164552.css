@@ -1,5 +1,5 @@
 #info-window-content {
-    width: 300px;
+    width: 250px;
 }
 #info-window-header {
     display: flex; 
@@ -10,7 +10,6 @@
     max-width: 40px; 
     height: auto; 
     margin-left: 5px;
-    border: black 1px solid;
 }
 #info-window-header h2 {
     margin: 5px; 
