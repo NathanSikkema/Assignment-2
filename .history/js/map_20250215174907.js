@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function codeAddress(e) {
     e.preventDefault();
     let address = document.getElementById('address').value;
-    let title = document.getElementById('title').value;
 
     // perform geocoding for the address entered into the input textbox, a 
     // callback function is given the latitude and longitude as an an 
@@ -162,21 +161,6 @@ function codeAddress(e) {
                 map: map
             });
             userMarkers.push(marker);
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div>
-                        <h3>${title}</h3>
-                        <p>Address: ${address}</p>
-                    </div>
-                `
-            });
-
-            marker.addListener("click", () => {
-                infoWindow.open({
-                    anchor: marker,
-                    map: map,
-                });
-            });
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }

@@ -8,7 +8,6 @@ let userMarkers = [];
 
 // Initialize the map and load markers
 async function initMap() {
-    geocoder = new google.maps.Geocoder();
     locations = await loadLocationsData();
     
     // Create the map
@@ -126,6 +125,15 @@ function showPositionOnMap(position){
     });
 }
 
+async function geocodeAddress(address) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == 'OK') {
+            var latitude = results[0].geometry.location.lat();
+            var lng = results[0].geometry.location.lng();
+        }
+    });
+}
 
 // call showPositionOnMap after finding the user's current location
 document.getElementById("geolocate").addEventListener("click",() =>{
@@ -142,44 +150,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function codeAddress(e) {
-    e.preventDefault();
+function codeAddress() {
     let address = document.getElementById('address').value;
-    let title = document.getElementById('title').value;
 
     // perform geocoding for the address entered into the input textbox, a 
     // callback function is given the latitude and longitude as an an 
     // argument as part of a results object..
     geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == 'OK') {
-            
-            // we could center the map at the location
-            map.setCenter(results[0].geometry.location);
-                        
-            // put a marker on the map at the given position
-            const marker = new google.maps.marker.AdvancedMarkerElement({
-                position: results[0].geometry.location,
-                map: map
-            });
-            userMarkers.push(marker);
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div>
-                        <h3>${title}</h3>
-                        <p>Address: ${address}</p>
-                    </div>
-                `
-            });
-
-            marker.addListener("click", () => {
-                infoWindow.open({
-                    anchor: marker,
-                    map: map,
-                });
-            });
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
+      if (status == 'OK') {
+        
+        // we could center the map at the location
+        // map.setCenter(results[0].geometry.location);
+        
+        // put the latitude and longitude on the page as text
+        document.getElementById("coords").innerHTML =
+          "coords: " + 
+          results[0].geometry.location.lat() + ", " + 
+          results[0].geometry.location.lng();
+         
+        // put a marker on the map at the given position
+        var marker = new google.maps.marker.AdvancedMarkerElement({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
   }
   

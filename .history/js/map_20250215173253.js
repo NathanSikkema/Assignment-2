@@ -8,7 +8,6 @@ let userMarkers = [];
 
 // Initialize the map and load markers
 async function initMap() {
-    geocoder = new google.maps.Geocoder();
     locations = await loadLocationsData();
     
     // Create the map
@@ -126,6 +125,18 @@ function showPositionOnMap(position){
     });
 }
 
+async function geocodeAddress(address) {
+    const geocoder = new google.maps.Geocoder();
+    return new Promise((resolve, reject) => {
+        geocoder.geocode({ address }, (results, status) => {
+            if (status === "OK") {
+                resolve(results[0].geometry.location);
+            } else {
+                reject(status);
+            }
+        });
+    });
+}
 
 // call showPositionOnMap after finding the user's current location
 document.getElementById("geolocate").addEventListener("click",() =>{
@@ -142,46 +153,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function codeAddress(e) {
-    e.preventDefault();
-    let address = document.getElementById('address').value;
-    let title = document.getElementById('title').value;
-
-    // perform geocoding for the address entered into the input textbox, a 
-    // callback function is given the latitude and longitude as an an 
-    // argument as part of a results object..
-    geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == 'OK') {
-            
-            // we could center the map at the location
-            map.setCenter(results[0].geometry.location);
-                        
-            // put a marker on the map at the given position
-            const marker = new google.maps.marker.AdvancedMarkerElement({
-                position: results[0].geometry.location,
-                map: map
-            });
-            userMarkers.push(marker);
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div>
-                        <h3>${title}</h3>
-                        <p>Address: ${address}</p>
-                    </div>
-                `
-            });
-
-            marker.addListener("click", () => {
-                infoWindow.open({
-                    anchor: marker,
-                    map: map,
-                });
-            });
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-  }
-  
-// call the codeAddress function when the geolocate button is clicked
-document.getElementById("markerForm").addEventListener("submit", codeAddress);
