@@ -15,12 +15,15 @@ async function initMap() {
         zoom: 12,
         mapId: "Assignment_2_MAP_APPLICATION",
     });
+
+    // Close info windows when clicking elsewhere on the map
     map.addListener("click", () => {
         if (currentInfoWindow) {
             currentInfoWindow.close();
         }
     });
 
+    // Generate markers for all locations
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
             let storeData = locations[store];
@@ -33,6 +36,7 @@ async function initMap() {
     }
 }
 
+// Fetch store location data from JSON
 async function loadLocationsData() {
     try {
         const response = await fetch("json/location-info.json");
@@ -47,16 +51,18 @@ async function loadLocationsData() {
     }
 }
 
+// Filter and show only the selected store markers
 function handleButton(filter) {
     markers.forEach(marker => {
-        if (marker.storeType.toLowerCase() === filter.toLowerCase() || filter.toLowerCase() === "all") {
-            marker.setMap(map);
+        if (marker.storeType === filter || filter === "all") {
+            marker.setMap(map);  // Show the marker
         } else {
-            marker.setMap(null);
+            marker.setMap(null); // Hide the marker
         }
     });
 }
 
+// Generate markers for each location
 function generateLocations(storeData, store) {
     for (const locationName in storeData.locations) {
         if (storeData.locations.hasOwnProperty(locationName)) {
@@ -75,9 +81,11 @@ function generateLocations(storeData, store) {
                 title: `${store} - ${locationName}`,
             });
 
+            // Assign store type to the marker for filtering
             marker.storeType = store;
-            markers.push(marker);
+            markers.push(marker); // Store marker in the global markers array
 
+            // Create info window
             const infoWindow = new google.maps.InfoWindow({
                 content: `
                     <div id="info-window-content">
@@ -92,6 +100,7 @@ function generateLocations(storeData, store) {
                 `,
             });
 
+            // Add click event to open info window
             marker.addListener("click", () => {
                 if (currentInfoWindow) {
                     currentInfoWindow.close();
@@ -107,10 +116,11 @@ function generateLocations(storeData, store) {
     }
 }
 
+// Add event listeners to buttons for filtering stores
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".btn").forEach(button => {
         button.addEventListener("click", function () {
-            const filter = this.textContent.replace("Show ", "").replace(" Stores", "").trim();
+            const filter = this.textContent.replace("Show ", "").trim(); // Extract store name from button
             handleButton(filter);
         });
     });

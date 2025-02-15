@@ -1,0 +1,23 @@
+#info-window-content {
+    width: 300px;
+}
+#info-window-header {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+#info-window-header img {
+    max-width: 40px; 
+    height: auto; 
+    margin: 5px;
+    border: black 1px solid;
+}
+#info-window-header h2 {
+    margin: 5px; 
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#info-window-content {
+    margin-top: 5px; 
+    text-align: center;
+}
