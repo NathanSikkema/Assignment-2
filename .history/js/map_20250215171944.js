@@ -105,34 +105,41 @@ function handleButton(filter) {
     });
 }
 
-function showPositionOnMap(position)
-    {
- 
-      // We use a custom marker:
-      //   https://developers.google.com/maps/documentation/javascript/custom-markers
-      // A list of icons we can use is found here:
-      //   http://kml4earth.appspot.com/icons.html
-      const icon_content = document.createElement("img");
-      icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
+function showUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userPosition = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
 
-      // create a marker centered at the user's location
-      let user_location = new google.maps.marker.AdvancedMarkerElement({
-        map: map,
-        position: { lat: position.coords.latitude, 
-                    lng: position.coords.longitude
-                  },
-        title: "Your Location",
-        content: icon_content
-      });
+                if (userMarker) {
+                    userMarker.setMap(null);
+                }
+
+                userMarker = new google.maps.Marker({
+                    position: userPosition,
+                    map: map,
+                    title: "You Are Here",
+                    icon: {
+                        url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png", // Custom icon URL
+                        scaledSize: new google.maps.Size(40, 40) // Adjust the icon size as needed
+                    }
+                });
+
+                // Center the map on the user's location
+                map.setCenter(userPosition);
+                map.setZoom(14);
+            },
+            () => {
+                alert("Geolocation failed. Please enable location services.");
+            }
+        );
+    } else {
+        alert("Geolocation is not supported by your browser.");
     }
-    
-    // call showPositionOnMap after finding the user's current location
-    document.getElementById("geolocate").addEventListener("click",
-      function()
-      {
-        navigator.geolocation.getCurrentPosition(showPositionOnMap);
-      }
-    );
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".btn").forEach(button => {
@@ -142,5 +149,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-

@@ -113,7 +113,7 @@ function showPositionOnMap(position)
       // A list of icons we can use is found here:
       //   http://kml4earth.appspot.com/icons.html
       const icon_content = document.createElement("img");
-      icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
+      icon_content.src = "http://maps.google.com/mapfiles/kml/shapes/poi.png";
 
       // create a marker centered at the user's location
       let user_location = new google.maps.marker.AdvancedMarkerElement({

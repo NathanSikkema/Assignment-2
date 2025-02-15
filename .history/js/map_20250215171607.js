@@ -4,7 +4,6 @@
 let map;
 let markers = [];
 let currentInfoWindow = null;
-let userMarker = null; 
 
 // Initialize the map and load markers
 async function initMap() {
@@ -46,6 +45,16 @@ async function loadLocationsData() {
         console.error("Error fetching JSON:", error);
         return [];
     }
+}
+
+function handleButton(filter) {
+    markers.forEach(marker => {
+        if (marker.storeType.toLowerCase() === filter.toLowerCase() || filter.toLowerCase() === "all") {
+            marker.setMap(map);
+        } else {
+            marker.setMap(null);
+        }
+    });
 }
 
 function generateLocations(storeData, store) {
@@ -95,45 +104,6 @@ function generateLocations(storeData, store) {
     }
 }
 
-function handleButton(filter) {
-    markers.forEach(marker => {
-        if (marker.storeType.toLowerCase() === filter.toLowerCase() || filter.toLowerCase() === "all") {
-            marker.setMap(map);
-        } else {
-            marker.setMap(null);
-        }
-    });
-}
-
-function showPositionOnMap(position)
-    {
- 
-      // We use a custom marker:
-      //   https://developers.google.com/maps/documentation/javascript/custom-markers
-      // A list of icons we can use is found here:
-      //   http://kml4earth.appspot.com/icons.html
-      const icon_content = document.createElement("img");
-      icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
-
-      // create a marker centered at the user's location
-      let user_location = new google.maps.marker.AdvancedMarkerElement({
-        map: map,
-        position: { lat: position.coords.latitude, 
-                    lng: position.coords.longitude
-                  },
-        title: "Your Location",
-        content: icon_content
-      });
-    }
-    
-    // call showPositionOnMap after finding the user's current location
-    document.getElementById("geolocate").addEventListener("click",
-      function()
-      {
-        navigator.geolocation.getCurrentPosition(showPositionOnMap);
-      }
-    );
-
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".btn").forEach(button => {
         button.addEventListener("click", function () {
@@ -142,5 +112,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-
