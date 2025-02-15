@@ -1,0 +1,47 @@
+{
+    "Turkstra Lumber":
+        {"Dundas": {
+            "position": "43.26786604976088, -79.97291571959232",
+            "icon": "images/Turkstra-Lumber.png"
+        },
+        "Hamilton": {
+            "position": "43.22224905949846, -79.87426932266203",
+            "icon": "images/Turkstra-Lumber.png"
+        },
+        "Stoney Creek": {
+            "position": "43.23322436068611, -79.7276638619204",
+            "icon": "images/Turkstra-Lumber.png"
+        },
+        "Waterdown": {
+            "position": "43.33243878213058, -79.89861280654668",
+            "icon": "images/Turkstra-Lumber.png"
+        }
+    },
+    "Home Depot": {
+        "icon": "images/Home-Depot.png",
+        "message": "The world’s largest home improvement retailer. We sell construction products, tools, and services.",
+        "Home Depot West Hamilton": {
+            "position": "43.230282946258654, -79.94469864219131"
+        },
+        "Home Depot East Hamilton": {
+            "position": "43.240175167625445, -79.757400839547"
+            
+        },
+        "Home Depot 3": {
+            "position": "43.36302057464476, -79.8094677985026"
+        }
+    },
+    "RONA":{
+        "icon": "images/Rona-Logo.png",
+        "message": "A Canadian home improvement company that sells products for building and renovation projects.",
+        "Hamilton": {
+            "position": "43.19208493665068, -79.83109988217481"
+        },
+        "Ancaster": {
+            "position": "43.20229946480177, -80.01292648909012"
+        },
+        "Waterdown": {
+            "position": "43.31768803913067, -79.89302838468844"
+        }
+    }
+}

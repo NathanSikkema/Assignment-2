@@ -34,10 +34,10 @@
             }
         }
     },
-    "RONA": {
+    "RONA":{
         "icon": "images/Rona-Logo.png",
         "message": "A Canadian home improvement company that sells products for building and renovation projects.",
-        "locations":{
+        "locations:":{
             "Hamilton": {
                 "position": "43.19208493665068, -79.83109988217481"
             },

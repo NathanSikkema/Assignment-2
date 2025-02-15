@@ -1,0 +1,15 @@
+{
+
+    "Home Depot West Hamilton": {
+        "position": "43.230282946258654, -79.94469864219131",
+        "icon": "images/Home-Depot.png"
+    },
+    "Home Depot East Hamilton": {
+        "position": "43.240175167625445, -79.757400839547",
+        "icon": "images/Home-Depot.png"
+    },
+    "Home Depot 3": {
+        "position": "43.36302057464476, -79.8094677985026",
+        "icon": "images/Home-Depot.png"
+    }
+}

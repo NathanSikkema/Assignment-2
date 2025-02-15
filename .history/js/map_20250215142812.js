@@ -29,36 +29,18 @@ async function initMap()
     locations = await loadLocationsData()
     markers = []
     console.log(locations);
-    for (const store in locations) {
-        if (locations.hasOwnProperty(store)) {
-            let storeData = locations[store];
-    
-            if (!storeData.locations) {
-                console.warn(`No locations found for ${store}`);
-                continue;  // Skip if no locations exist
-            }
-    
-            for (const locationName in storeData.locations) {
-                if (storeData.locations.hasOwnProperty(locationName)) {
-                    let locationData = storeData.locations[locationName];
-    
-                    let position = locationData.position;
-    
-                    // Convert position string to { lat, lng } object
-                    if (typeof position === "string") {
-                        const [lat, lng] = position.split(",").map(Number);
-                        position = { lat, lng };
-                    }
-    
-                    const marker = new google.maps.marker.AdvancedMarkerElement({
-                        position: position,
-                        map: map,
-                        title: `${store} - ${locationName}`
-                    });
-    
-                    markers.push(marker);
-                }
-            }
+    for (const key in locations) {
+        if (locations.hasOwnProperty(key)) {
+            let locationData = locations[key];
+            let position = locationData.position;
+            const [lat, lng] = position.split(",").map(Number);
+            position = { lat, lng };
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+                position: position,
+                map: map,
+                title: key
+            });
+            markers.push(marker);
         }
     }
 
