@@ -112,17 +112,15 @@ function showPositionOnMap(position){
     //   https://developers.google.com/maps/documentation/javascript/custom-markers
     // A list of icons we can use is found here:
     //   http://kml4earth.appspot.com/icons.html
-    const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
-    map.setCenter(userLocation);
     const icon_content = document.createElement("img");
     icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
+    map.setCenter(position.coords.latitude, position.coords.longitude);
     // create a marker centered at the user's location
     let user_location = new google.maps.marker.AdvancedMarkerElement({
     map: map,
-    position: {
-        lat: position.coords.latitude, 
-        lng: position.coords.longitude
-    },
+    position: { lat: position.coords.latitude, 
+                lng: position.coords.longitude
+                },
     title: "Your Location",
     content: icon_content
     });

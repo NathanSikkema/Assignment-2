@@ -119,10 +119,9 @@ function showPositionOnMap(position){
     // create a marker centered at the user's location
     let user_location = new google.maps.marker.AdvancedMarkerElement({
     map: map,
-    position: {
-        lat: position.coords.latitude, 
-        lng: position.coords.longitude
-    },
+    position: { lat: position.coords.latitude, 
+                lng: position.coords.longitude
+                },
     title: "Your Location",
     content: icon_content
     });

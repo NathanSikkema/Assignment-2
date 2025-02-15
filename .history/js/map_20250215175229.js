@@ -13,7 +13,7 @@ async function initMap() {
     
     // Create the map
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 43.271914280548835, lng:-79.88844092878001},
+        center: { lat: 43.2387, lng: -79.8881 },
         zoom: 12,
         mapId: "Assignment_2_MAP_APPLICATION",
     });
@@ -112,17 +112,15 @@ function showPositionOnMap(position){
     //   https://developers.google.com/maps/documentation/javascript/custom-markers
     // A list of icons we can use is found here:
     //   http://kml4earth.appspot.com/icons.html
-    const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
-    map.setCenter(userLocation);
     const icon_content = document.createElement("img");
     icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
+
     // create a marker centered at the user's location
     let user_location = new google.maps.marker.AdvancedMarkerElement({
     map: map,
-    position: {
-        lat: position.coords.latitude, 
-        lng: position.coords.longitude
-    },
+    position: { lat: position.coords.latitude, 
+                lng: position.coords.longitude
+                },
     title: "Your Location",
     content: icon_content
     });
@@ -145,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function codeAddress(e) {
-    e.preventDefault();
+    
     let address = document.getElementById('address').value;
     let title = document.getElementById('title').value;
 
@@ -179,7 +177,6 @@ function codeAddress(e) {
                     map: map,
                 });
             });
-            document.getElementById("markerForm").reset();
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
