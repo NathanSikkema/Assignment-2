@@ -30,7 +30,7 @@ async function initMap() {
     });
     
     directionsRenderer.setMap(map);
-    
+    handleDirections();
 
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
@@ -302,7 +302,7 @@ function disableMatchingOptions() {
     });
 }
 
-function handleDirections() {
+function handleDirections(){
 
     const origin = document.getElementById('origin').value;
     const destination = document.getElementById('destination').value;

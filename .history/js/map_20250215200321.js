@@ -30,7 +30,7 @@ async function initMap() {
     });
     
     directionsRenderer.setMap(map);
-    
+    handleDirections();
 
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {

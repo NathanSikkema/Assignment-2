@@ -7,15 +7,11 @@ let currentInfoWindow = null;
 let userMarkers = []; 
 let locations = {};
 let geocoder;
-let directionsService;
-let directionsRenderer;
 
 // Initialize the map and load markers
 async function initMap() {
     geocoder = new google.maps.Geocoder();
     locations = await loadLocationsData();
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer();
     
     // Create the map
     map = new google.maps.Map(document.getElementById("map"), {
@@ -28,9 +24,6 @@ async function initMap() {
             currentInfoWindow.close();
         }
     });
-    
-    directionsRenderer.setMap(map);
-    
 
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
@@ -302,28 +295,11 @@ function disableMatchingOptions() {
     });
 }
 
-function handleDirections() {
 
-    const origin = document.getElementById('origin').value;
-    const destination = document.getElementById('destination').value;
-    // setup a basic directions request with origin, destination, travel mode,
-    // there are MANY more possible options here
-    if (!origin || !destination) {
-        alert("Please select both an origin and a destination.");
-        return;
-    }
-    request = {
-        origin: origin,
-        destination: destination,
-        travelMode: 'DRIVING'
-    };
 
-    // use the directions service and directions renderer to render the 
-    // directions on the map
-    directionsService.route(request, function(result, status) {
-        if (status == 'OK') directionsRenderer.setDirections(result);
-        else alert("Directions request failed due to " + status);
-    });
-}
+
+
+
+  
 // call the codeAddress function when the geolocate button is clicked
 document.getElementById("markerForm").addEventListener("submit", codeAddress);

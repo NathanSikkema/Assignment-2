@@ -30,7 +30,7 @@ async function initMap() {
     });
     
     directionsRenderer.setMap(map);
-    
+    handleDirections();
 
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
@@ -302,10 +302,7 @@ function disableMatchingOptions() {
     });
 }
 
-function handleDirections() {
-
-    const origin = document.getElementById('origin').value;
-    const destination = document.getElementById('destination').value;
+function handleDirections(){
     // setup a basic directions request with origin, destination, travel mode,
     // there are MANY more possible options here
     if (!origin || !destination) {
@@ -313,16 +310,18 @@ function handleDirections() {
         return;
     }
     request = {
-        origin: origin,
-        destination: destination,
+        origin: document.getElementById('origin').value,
+        destination: document.getElementById('destination').value,
         travelMode: 'DRIVING'
     };
 
     // use the directions service and directions renderer to render the 
     // directions on the map
     directionsService.route(request, function(result, status) {
-        if (status == 'OK') directionsRenderer.setDirections(result);
-        else alert("Directions request failed due to " + status);
+    if (status == 'OK') {
+        directionsRenderer.setDirections(result);
+        console.log(result);
+    }
     });
 }
 // call the codeAddress function when the geolocate button is clicked

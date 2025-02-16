@@ -23,14 +23,12 @@ async function initMap() {
         zoom: 11,
         mapId: "Assignment_2_MAP_APPLICATION",
     });
+    directionsRenderer.setMap(map);
     map.addListener("click", () => {
         if (currentInfoWindow) {
             currentInfoWindow.close();
         }
     });
-    
-    directionsRenderer.setMap(map);
-    
 
     for (const store in locations) {
         if (locations.hasOwnProperty(store)) {
@@ -302,28 +300,5 @@ function disableMatchingOptions() {
     });
 }
 
-function handleDirections() {
-
-    const origin = document.getElementById('origin').value;
-    const destination = document.getElementById('destination').value;
-    // setup a basic directions request with origin, destination, travel mode,
-    // there are MANY more possible options here
-    if (!origin || !destination) {
-        alert("Please select both an origin and a destination.");
-        return;
-    }
-    request = {
-        origin: origin,
-        destination: destination,
-        travelMode: 'DRIVING'
-    };
-
-    // use the directions service and directions renderer to render the 
-    // directions on the map
-    directionsService.route(request, function(result, status) {
-        if (status == 'OK') directionsRenderer.setDirections(result);
-        else alert("Directions request failed due to " + status);
-    });
-}
 // call the codeAddress function when the geolocate button is clicked
 document.getElementById("markerForm").addEventListener("submit", codeAddress);
