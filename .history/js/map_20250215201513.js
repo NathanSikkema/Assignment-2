@@ -9,7 +9,6 @@ let locations = {};
 let geocoder;
 let directionsService;
 let directionsRenderer;
-let userLocationSet = false;
 
 // Initialize the map and load markers
 async function initMap() {
@@ -120,55 +119,31 @@ function handleButton(filter) {
     });
 }
 
-async function showPositionOnMap(position) {
+function showPositionOnMap(position){
+ 
+    // We use a custom marker:
+    //   https://developers.google.com/maps/documentation/javascript/custom-markers
+    // A list of icons we can use is found here:
+    //   http://kml4earth.appspot.com/icons.html
     const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
     map.setCenter(userLocation);
     const icon_content = document.createElement("img");
     icon_content.src = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
-    
     // create a marker centered at the user's location
     let user_location = new google.maps.marker.AdvancedMarkerElement({
-      map: map,
-      position: userLocation,
-      title: "Your Location",
-      content: icon_content
+    map: map,
+    position: {
+        lat: position.coords.latitude, 
+        lng: position.coords.longitude
+    },
+    title: "Your Location",
+    content: icon_content
     });
-    const address = await getNearestAddress(userLocation);
-    if (address) {
-        user_location.address = address;
-        console.log("User's nearest address:", address);
-    } else {
-        user_location.address = "Unknown address";
-        console.log("Address not found.");
-    }
+    user_location.address = document.getElementById("address").value;
     user_location.link = "#";
     user_location.isCustom = true;
-    if (!userLocationSet) {
-        userMarkers.push(user_location);
-        userLocationSet = true;
-        updateLocationsList();
-    }
-  }
-  
-async function getNearestAddress(latlng) {
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ location: latlng }, function(results, status) {
-            if (status === "OK") {
-                if (results[0]) {
-                    // Resolve the Promise with the formatted address
-                    resolve(results[0].formatted_address);
-                } else {
-                    console.log("No results found");
-                    resolve(null);
-                }
-            } else {
-                console.log("Geocoder failed due to: " + status);
-                resolve(null);
-            }
-        });
-    });
+    userMarkers.push(user_location);
 }
-  
 
 
 // call showPositionOnMap after finding the user's current location

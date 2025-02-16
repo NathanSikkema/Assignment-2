@@ -143,11 +143,11 @@ async function showPositionOnMap(position) {
     }
     user_location.link = "#";
     user_location.isCustom = true;
-    if (!userLocationSet) {
-        userMarkers.push(user_location);
-        userLocationSet = true;
-        updateLocationsList();
-    }
+    if (!userLocationSet) userMarkers.push(user_location);
+    
+    
+    // Update the locations list (if needed)
+    updateLocationsList();
   }
   
 async function getNearestAddress(latlng) {

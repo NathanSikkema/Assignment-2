@@ -9,7 +9,6 @@ let locations = {};
 let geocoder;
 let directionsService;
 let directionsRenderer;
-let userLocationSet = false;
 
 // Initialize the map and load markers
 async function initMap() {
@@ -143,29 +142,26 @@ async function showPositionOnMap(position) {
     }
     user_location.link = "#";
     user_location.isCustom = true;
-    if (!userLocationSet) {
-        userMarkers.push(user_location);
-        userLocationSet = true;
-        updateLocationsList();
-    }
+    userMarkers.push(user_location);
+    
+    // Update the locations list (if needed)
+    updateLocationsList();
   }
   
-async function getNearestAddress(latlng) {
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ location: latlng }, function(results, status) {
-            if (status === "OK") {
-                if (results[0]) {
-                    // Resolve the Promise with the formatted address
-                    resolve(results[0].formatted_address);
-                } else {
-                    console.log("No results found");
-                    resolve(null);
-                }
-            } else {
-                console.log("Geocoder failed due to: " + status);
-                resolve(null);
-            }
-        });
+async function getNearestAddress(latlng, callback) {
+    geocoder.geocode({ location: latlng }, function(results, status) {
+        if (status === "OK") {
+        if (results[0]) {
+            // Call the callback with the formatted address
+            callback(results[0].formatted_address);
+        } else {
+            console.log("No results found");
+            callback(null);
+        }
+        } else {
+        console.log("Geocoder failed due to: " + status);
+        callback(null);
+        }
     });
 }
   

@@ -146,8 +146,11 @@ async function showPositionOnMap(position) {
     if (!userLocationSet) {
         userMarkers.push(user_location);
         userLocationSet = true;
-        updateLocationsList();
     }
+
+    
+    // Update the locations list (if needed)
+    updateLocationsList();
   }
   
 async function getNearestAddress(latlng) {

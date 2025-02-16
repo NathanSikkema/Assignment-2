@@ -9,7 +9,6 @@ let locations = {};
 let geocoder;
 let directionsService;
 let directionsRenderer;
-let userLocationSet = false;
 
 // Initialize the map and load markers
 async function initMap() {
@@ -120,7 +119,7 @@ function handleButton(filter) {
     });
 }
 
-async function showPositionOnMap(position) {
+function showPositionOnMap(position) {
     const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
     map.setCenter(userLocation);
     const icon_content = document.createElement("img");
@@ -133,41 +132,38 @@ async function showPositionOnMap(position) {
       title: "Your Location",
       content: icon_content
     });
-    const address = await getNearestAddress(userLocation);
-    if (address) {
-        user_location.address = address;
-        console.log("User's nearest address:", address);
-    } else {
-        user_location.address = "Unknown address";
-        console.log("Address not found.");
-    }
+    
     user_location.link = "#";
     user_location.isCustom = true;
-    if (!userLocationSet) {
-        userMarkers.push(user_location);
-        userLocationSet = true;
-        updateLocationsList();
-    }
+    userMarkers.push(user_location);
+    
+    // Update the locations list (if needed)
+    updateLocationsList();
+  
+    // Use the getNearestAddress function with a callback
+    getNearestAddress(userLocation, function(address) {
+      // Now that the address is available, you can assign it.
+      user_location.address = address;
+      console.log("User's nearest address:", address);
+    });
   }
   
-async function getNearestAddress(latlng) {
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ location: latlng }, function(results, status) {
-            if (status === "OK") {
-                if (results[0]) {
-                    // Resolve the Promise with the formatted address
-                    resolve(results[0].formatted_address);
-                } else {
-                    console.log("No results found");
-                    resolve(null);
-                }
-            } else {
-                console.log("Geocoder failed due to: " + status);
-                resolve(null);
-            }
-        });
+  function getNearestAddress(latlng, callback) {
+    geocoder.geocode({ location: latlng }, function(results, status) {
+      if (status === "OK") {
+        if (results[0]) {
+          // Call the callback with the formatted address
+          callback(results[0].formatted_address);
+        } else {
+          console.log("No results found");
+          callback(null);
+        }
+      } else {
+        console.log("Geocoder failed due to: " + status);
+        callback(null);
+      }
     });
-}
+  }
   
 
 

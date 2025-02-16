@@ -9,7 +9,6 @@ let locations = {};
 let geocoder;
 let directionsService;
 let directionsRenderer;
-let userLocationSet = false;
 
 // Initialize the map and load markers
 async function initMap() {
@@ -143,11 +142,10 @@ async function showPositionOnMap(position) {
     }
     user_location.link = "#";
     user_location.isCustom = true;
-    if (!userLocationSet) {
-        userMarkers.push(user_location);
-        userLocationSet = true;
-        updateLocationsList();
-    }
+    userMarkers.push(user_location);
+    
+    // Update the locations list (if needed)
+    updateLocationsList();
   }
   
 async function getNearestAddress(latlng) {
