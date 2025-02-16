@@ -265,6 +265,7 @@ function updateLocationsList() {
 
         let storeSection = document.createElement("div");
         storeSection.classList.add("mb-2");
+
         storeSection.innerHTML = `
             <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}" aria-expanded="false" aria-controls="collapse-${store.replace(/\s+/g, '')}">
                 ${store} (${locationCount} ${locationCount === 1 ? 'Location' : 'Locations'})
