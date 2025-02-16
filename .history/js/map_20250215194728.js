@@ -35,7 +35,7 @@ async function initMap() {
             generateLocations(storeData, store);
         }
     }
-    updateLocationsList();
+    updateLocationDropdowns();
 }
 
 async function loadLocationsData() {
@@ -99,7 +99,7 @@ function generateLocations(storeData, store) {
             });
         }
     }
-    updateLocationsList();
+    updateLocationDropdowns();
 }
 
 function handleButton(filter) {
@@ -174,7 +174,7 @@ function codeAddress(e) {
             marker.link = "#";
             marker.isCustom = true;
             userMarkers.push(marker);
-            updateLocationsList();
+            updateLocationDropdowns();
             const infoWindow = new google.maps.InfoWindow({
                 content: `
                     <div>
@@ -196,8 +196,7 @@ function codeAddress(e) {
         }
     });
 }
-
-function updateLocationsList() {
+function updateLocationDropdowns() {
     let locationsList = document.getElementById("locationsList");
     locationsList.innerHTML = ""; // Clear the existing list
 
@@ -207,12 +206,17 @@ function updateLocationsList() {
     markers.concat(userMarkers).forEach(marker => {
         let storeType, locationName;
         if (marker.isCustom) {
+            // All custom markers will be grouped under "Custom Markers"
             storeType = "Custom Markers";
-            locationName = marker.title;
-        } else [storeType, locationName] = marker.title.split(" - ");
-        
+            locationName = marker.title; // Use the title as is or parse as needed.
+        } else {
+            // Assumes regular markers have titles formatted as "Store - Location"
+            [storeType, locationName] = marker.title.split(" - ");
+        }
 
-        if (!storeGroups[storeType]) storeGroups[storeType] = [];
+        if (!storeGroups[storeType]) {
+            storeGroups[storeType] = [];
+        }
         storeGroups[storeType].push({ 
             name: locationName, 
             lat: marker.position.lat, 
@@ -222,9 +226,12 @@ function updateLocationsList() {
         });
     });
 
+    // Create collapsible sections for each store type
     for (const store in storeGroups) {
         let storeSection = document.createElement("div");
         storeSection.classList.add("mb-2");
+
+        // Store Header (Clickable for Toggle)
         storeSection.innerHTML = `
             <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}">
                 ${store}
@@ -234,6 +241,8 @@ function updateLocationsList() {
         `;
 
         let storeList = storeSection.querySelector("ul");
+
+        // Add each location to the collapsible list
         storeGroups[store].forEach(location => {
             let listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
@@ -243,59 +252,7 @@ function updateLocationsList() {
 
         locationsList.appendChild(storeSection);
     }
-    updateRouteDropdowns();
 }
-
-function updateRouteDropdowns() {
-    const originSelect = document.getElementById('origin');
-    const destinationSelect = document.getElementById('destination');
-    
-    originSelect.innerHTML = '<option value="" disabled selected>Select Origin</option>';
-    destinationSelect.innerHTML = '<option value="" disabled selected>Select Destination</option>';
-    
-    const allMarkers = markers.concat(userMarkers);
-    
-    allMarkers.forEach(marker => {
-        const optionText = marker.title;
-        const optionValue = `${marker.position.lat},${marker.position.lng}`;
-        
-        const originOption = document.createElement('option');
-        originOption.value = optionValue;
-        originOption.textContent = optionText;
-        originSelect.appendChild(originOption);
-        
-        const destinationOption = document.createElement('option');
-        destinationOption.value = optionValue;
-        destinationOption.textContent = optionText;
-        destinationSelect.appendChild(destinationOption);
-    });
-    
-    originSelect.addEventListener("change", disableMatchingOptions);
-    destinationSelect.addEventListener("change", disableMatchingOptions);
-}
-
-function disableMatchingOptions() {
-    const originSelect = document.getElementById('origin');
-    const destinationSelect = document.getElementById('destination');
-    
-    const selectedOrigin = originSelect.value;
-    const selectedDestination = destinationSelect.value;
-    
-    Array.from(destinationSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedOrigin && option.value === selectedOrigin) {
-            option.disabled = true;
-        }
-    });
-    
-    Array.from(originSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedDestination && option.value === selectedDestination) {
-            option.disabled = true;
-        }
-    });
-}
-
 
 
 

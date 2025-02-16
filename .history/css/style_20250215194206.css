@@ -21,6 +21,6 @@
     margin-top: 5px; 
     text-align: center;
 }
-.listed-item-address {
-    font-size: 14px !important;
+.list-group-item li p {
+    font-size: 50px !important;
 }

@@ -247,55 +247,35 @@ function updateLocationsList() {
 }
 
 function updateRouteDropdowns() {
+    // Get the dropdown elements
     const originSelect = document.getElementById('origin');
     const destinationSelect = document.getElementById('destination');
     
+    // Clear any existing options (except for the placeholder)
     originSelect.innerHTML = '<option value="" disabled selected>Select Origin</option>';
     destinationSelect.innerHTML = '<option value="" disabled selected>Select Destination</option>';
     
+    // Combine all markers (regular and custom)
     const allMarkers = markers.concat(userMarkers);
     
+    // Loop through markers and add an option for each
     allMarkers.forEach(marker => {
-        const optionText = marker.title;
+        const optionText = marker.title; // You can customize what to display here
         const optionValue = `${marker.position.lat},${marker.position.lng}`;
         
+        // Create option for origin
         const originOption = document.createElement('option');
         originOption.value = optionValue;
         originOption.textContent = optionText;
         originSelect.appendChild(originOption);
         
+        // Create option for destination
         const destinationOption = document.createElement('option');
         destinationOption.value = optionValue;
         destinationOption.textContent = optionText;
         destinationSelect.appendChild(destinationOption);
     });
-    
-    originSelect.addEventListener("change", disableMatchingOptions);
-    destinationSelect.addEventListener("change", disableMatchingOptions);
 }
-
-function disableMatchingOptions() {
-    const originSelect = document.getElementById('origin');
-    const destinationSelect = document.getElementById('destination');
-    
-    const selectedOrigin = originSelect.value;
-    const selectedDestination = destinationSelect.value;
-    
-    Array.from(destinationSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedOrigin && option.value === selectedOrigin) {
-            option.disabled = true;
-        }
-    });
-    
-    Array.from(originSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedDestination && option.value === selectedDestination) {
-            option.disabled = true;
-        }
-    });
-}
-
 
 
 

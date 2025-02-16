@@ -23,7 +23,7 @@
             /* The height and width of the div will become the dimensions of the map! */
             #map {
               height: 700px;
-              width: 900px;
+              width: 1400px;
             }
           </style>
     </head>
@@ -35,27 +35,14 @@
         <h1 class="text-center my-4">Map Application</h1>
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div id="map" class="mb-4"></div>
                 </div>
                 <!-- Side Bar -->
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                     <div id="sidebar">
                         <h3>Select Locations</h3>
-                        <label for="origin">Origin:</label>
-                        <select id="origin" class="form-control">
-                            <option value="" disabled selected>Select Origin</option>
-                        </select>
-
-                        <label for="destination" class="mt-2">Destination:</label>
-                        <select id="destination" class="form-control">
-                            <option value="" disabled selected>Select Destination</option>
-                        </select>
-
-                        <button id="getDirections" class="btn btn-primary w-100 mt-3">Get Directions</button>
-
-                        <h3 class="mt-4">Locations List</h3>
-                        <ul id="locationsList" class="list-group"></ul>
+                        
                     </div>
                  </div>
             </div>

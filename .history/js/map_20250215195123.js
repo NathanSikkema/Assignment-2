@@ -196,7 +196,6 @@ function codeAddress(e) {
         }
     });
 }
-
 function updateLocationsList() {
     let locationsList = document.getElementById("locationsList");
     locationsList.innerHTML = ""; // Clear the existing list
@@ -243,59 +242,7 @@ function updateLocationsList() {
 
         locationsList.appendChild(storeSection);
     }
-    updateRouteDropdowns();
 }
-
-function updateRouteDropdowns() {
-    const originSelect = document.getElementById('origin');
-    const destinationSelect = document.getElementById('destination');
-    
-    originSelect.innerHTML = '<option value="" disabled selected>Select Origin</option>';
-    destinationSelect.innerHTML = '<option value="" disabled selected>Select Destination</option>';
-    
-    const allMarkers = markers.concat(userMarkers);
-    
-    allMarkers.forEach(marker => {
-        const optionText = marker.title;
-        const optionValue = `${marker.position.lat},${marker.position.lng}`;
-        
-        const originOption = document.createElement('option');
-        originOption.value = optionValue;
-        originOption.textContent = optionText;
-        originSelect.appendChild(originOption);
-        
-        const destinationOption = document.createElement('option');
-        destinationOption.value = optionValue;
-        destinationOption.textContent = optionText;
-        destinationSelect.appendChild(destinationOption);
-    });
-    
-    originSelect.addEventListener("change", disableMatchingOptions);
-    destinationSelect.addEventListener("change", disableMatchingOptions);
-}
-
-function disableMatchingOptions() {
-    const originSelect = document.getElementById('origin');
-    const destinationSelect = document.getElementById('destination');
-    
-    const selectedOrigin = originSelect.value;
-    const selectedDestination = destinationSelect.value;
-    
-    Array.from(destinationSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedOrigin && option.value === selectedOrigin) {
-            option.disabled = true;
-        }
-    });
-    
-    Array.from(originSelect.options).forEach(option => {
-        option.disabled = false;
-        if (selectedDestination && option.value === selectedDestination) {
-            option.disabled = true;
-        }
-    });
-}
-
 
 
 
