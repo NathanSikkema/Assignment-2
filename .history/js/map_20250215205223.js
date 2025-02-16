@@ -147,7 +147,6 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-        handleButton("all");
     }
   }
   
@@ -284,14 +283,10 @@ function updateLocationsList() {
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });
-                map.setZoom(14);
+                map.setZoom(16);
             });
             listItem.addEventListener("mouseover", () => {
-                listItem.style.cursor = "pointer";
-                listItem.style.backgroundColor = "lightgray";
-            });
-            listItem.addEventListener("mouseout", () => {
-                listItem.style.backgroundColor = "white";
+                MouseEvent.style.cursor = "pointer";
             });
         });
 

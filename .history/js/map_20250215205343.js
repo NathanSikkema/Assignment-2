@@ -147,7 +147,6 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-        handleButton("all");
     }
   }
   

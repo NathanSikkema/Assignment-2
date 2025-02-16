@@ -147,7 +147,6 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-        handleButton("all");
     }
   }
   
@@ -278,20 +277,11 @@ function updateLocationsList() {
 
         storeLocations.forEach(location => {
             let listItem = document.createElement("li");
-
             listItem.classList.add("list-group-item");
             listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: <a href="${location.link}" target="_blank">${location.address}</a></span>`;
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });
-                map.setZoom(14);
-            });
-            listItem.addEventListener("mouseover", () => {
-                listItem.style.cursor = "pointer";
-                listItem.style.backgroundColor = "lightgray";
-            });
-            listItem.addEventListener("mouseout", () => {
-                listItem.style.backgroundColor = "white";
             });
         });
 
