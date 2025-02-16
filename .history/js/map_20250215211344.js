@@ -151,9 +151,7 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-    }
-    handleButton("all");
-}
+    }}
 async function getNearestAddress(latlng) {
     // This function calculates the nearest address to the user's location.
     return new Promise((resolve, reject) => {
@@ -284,7 +282,7 @@ function updateLocationsList() {
         storeLocations.forEach(location => {
             let listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
-            listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: ${(location.link !== "#") ? `<a href="${location.link}" target="_blank">${location.address}</a>` : location.address}</span>`;
+            listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: ${location.isCustom ? location.address : `<a href="${location.link}" target="_blank">${location.address}</a>`}</span>`;
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });

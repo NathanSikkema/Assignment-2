@@ -150,10 +150,9 @@ async function showPositionOnMap(position) {
     if (!userLocationSet) {
         userMarkers.push(user_location);
         userLocationSet = true;
+        handleButton("all");
         updateLocationsList();
-    }
-    handleButton("all");
-}
+    }}
 async function getNearestAddress(latlng) {
     // This function calculates the nearest address to the user's location.
     return new Promise((resolve, reject) => {

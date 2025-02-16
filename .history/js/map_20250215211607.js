@@ -151,9 +151,7 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-    }
-    handleButton("all");
-}
+    }}
 async function getNearestAddress(latlng) {
     // This function calculates the nearest address to the user's location.
     return new Promise((resolve, reject) => {
@@ -288,7 +286,7 @@ function updateLocationsList() {
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });
-                map.setZoom(14);
+                map.setZoom(32);
             });
             listItem.addEventListener("mouseover", () => {
                 listItem.style.cursor = "pointer";
