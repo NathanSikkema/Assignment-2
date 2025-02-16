@@ -255,17 +255,15 @@ function updateLocationsList() {
             link: marker.link 
         });
     });
-    let collapseParentContainer = document.createElement("div");
-    collapseParentContainer.id = "collapseParentContainer";
 
     for (const store in storeGroups) {
         let storeSection = document.createElement("div");
         storeSection.classList.add("mb-2");
         storeSection.innerHTML = `
-            <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}" aria-expanded="false" aria-controls="collapse-${store.replace(/\s+/g, '')}">
+            <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}">
                 ${store}
             </button>
-            <ul id="collapse-${store.replace(/\s+/g, '')}" class="list-group collapse" data-bs-parent="#collapseParentContainer">
+            <ul id="collapse-${store.replace(/\s+/g, '')}" class="list-group collapse">
             </ul>
         `;
 
@@ -277,9 +275,23 @@ function updateLocationsList() {
             listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: <a href="${location.link}" target="_blank">${location.address}</a></span>`;
             storeList.appendChild(listItem);
         });
-        collapseParentContainer.appendChild(storeSection);
+
+        // Append store section to the locations list
+        locationsList.appendChild(storeSection);
+
+        // Add collapse behavior: only one section should be open at a time
+        let collapseButton = storeSection.querySelector("button");
+        collapseButton.addEventListener("click", function () {
+            // Find all collapse sections
+            let allCollapseElements = document.querySelectorAll('.collapse');
+            allCollapseElements.forEach(collapseElement => {
+                if (collapseElement !== storeList) {
+                    // Collapse the sections that aren't the clicked one
+                    new bootstrap.Collapse(collapseElement, { toggle: false });
+                }
+            });
+        });
     }
-    locationsList.appendChild(collapseParentContainer);
 
     updateRouteDropdowns();
 }

@@ -255,6 +255,8 @@ function updateLocationsList() {
             link: marker.link 
         });
     });
+
+    // Create a parent container for all collapsible sections to ensure one open at a time
     let collapseParentContainer = document.createElement("div");
     collapseParentContainer.id = "collapseParentContainer";
 
@@ -277,8 +279,12 @@ function updateLocationsList() {
             listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: <a href="${location.link}" target="_blank">${location.address}</a></span>`;
             storeList.appendChild(listItem);
         });
+
+        // Append store section to the parent container
         collapseParentContainer.appendChild(storeSection);
     }
+
+    // Append the parent container to the locations list
     locationsList.appendChild(collapseParentContainer);
 
     updateRouteDropdowns();

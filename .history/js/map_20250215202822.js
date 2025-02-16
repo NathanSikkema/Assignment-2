@@ -246,6 +246,7 @@ function updateLocationsList() {
             locationName = marker.title;
         } else [storeType, locationName] = marker.title.split(" - ");
         
+
         if (!storeGroups[storeType]) storeGroups[storeType] = [];
         storeGroups[storeType].push({ 
             name: locationName, 
@@ -255,35 +256,34 @@ function updateLocationsList() {
             link: marker.link 
         });
     });
-    let collapseParentContainer = document.createElement("div");
-    collapseParentContainer.id = "collapseParentContainer";
 
     for (const store in storeGroups) {
         let storeSection = document.createElement("div");
         storeSection.classList.add("mb-2");
         storeSection.innerHTML = `
-            <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}" aria-expanded="false" aria-controls="collapse-${store.replace(/\s+/g, '')}">
+            <button class="btn btn-secondary w-100 text-start" data-bs-toggle="collapse" data-bs-target="#collapse-${store.replace(/\s+/g, '')}">
                 ${store}
             </button>
-            <ul id="collapse-${store.replace(/\s+/g, '')}" class="list-group collapse" data-bs-parent="#collapseParentContainer">
+            <ul id="collapse-${store.replace(/\s+/g, '')}" class="list-group collapse">
             </ul>
         `;
 
         let storeList = storeSection.querySelector("ul");
+        storeList.addListener("click", function (e) {
+            
         
+        });
         storeGroups[store].forEach(location => {
             let listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
             listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: <a href="${location.link}" target="_blank">${location.address}</a></span>`;
             storeList.appendChild(listItem);
         });
-        collapseParentContainer.appendChild(storeSection);
-    }
-    locationsList.appendChild(collapseParentContainer);
 
+        locationsList.appendChild(storeSection);
+    }
     updateRouteDropdowns();
 }
-
 
 function updateRouteDropdowns() {
     const originSelect = document.getElementById('origin');
