@@ -4,7 +4,7 @@
         "website":"https://turkstralumber.com/",
         "message": "Turkstra Lumber is a family-owned business that sells lumber, doors, windows, and other building materials.",
         "locations":{
-        "Dundas": {
+            "Dundas": {
                 "position": "43.2678927,-79.9755095",
                 "address":"355 Mill St, Dundas, ON L9H 2L9",
                 "link": "https://www.google.com/maps/place/Turkstra+Lumber+-+Dundas/@43.2678927,-79.9755095,17z/data=!3m1!4b1!4m6!3m5!1s0x882c847bba7ad7ed:0xee25e2cb2ab5fe38!8m2!3d43.2678888!4d-79.9729346!16s%2Fg%2F1vn_zlpx?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"

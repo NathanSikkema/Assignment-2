@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--
             Author............ : Nathan Sikkema
             Student Number.... : 000911571
@@ -9,9 +10,9 @@
             Course............ : Mobile Web Programming
             Type.............. : HTML
             Start Date........ : 2025 02 14
-            End Date.......... : 2025 02 15
-            Duration.......... : 1 Day
-            Last Modified..... : 2025 02 14
+            End Date.......... : 2025 02 17
+            Duration.......... : 3 Days
+            Last Modified..... : 2025 02 17
         -->
             
         <title>
@@ -22,8 +23,8 @@
         <style>
             /* The height and width of the div will become the dimensions of the map! */
             #map {
-              height: 700px;
-              width: 900px;
+              width: 100%;
+              aspect-ratio: 16 / 9;
             }
           </style>
     </head>
@@ -31,15 +32,22 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtQItp7jhyNZXFmlBnXb1eTFnAfpCjgUw&loading=async&callback=initMap&libraries=marker">
     </script>
     <body>
-        
         <h1 class="text-center my-4">Map Application</h1>
         <div class="container">
-            <div class="row">
-                <div class="col-md-9">
+            <div id="main-section">
+                <div class="col-md-9 col-12">
                     <div id="map" class="mb-4"></div>
+                    <div class="buttons d-flex justify-content-space-between flex-wrap">
+                        <button class="btn btn-primary m-2" onclick="handleButton('all')">Show All Stores</button>
+                        <button class="btn btn-primary m-2" onclick="handleButton('Turkstra Lumber')">Show Turkstra Lumber</button>
+                        <button class="btn btn-primary m-2" onclick="handleButton('Home Depot')">Show Home Depot</button>
+                        <button class="btn btn-primary m-2" onclick="handleButton('Home Hardware')">Show Home Hardware</button>
+                        <button class="btn btn-primary m-2" onclick="handleButton('RONA')">Show Rona</button>
+                        <button class="btn btn-success m-2" id="geolocate">Show My Location</button>
+                    </div>
                 </div>
                 <!-- Side Bar -->
-                 <div class="col-md-3">
+                <div class="col-md-3 col-12">
                     <div id="sidebar">
                         <h3>Select Locations</h3>
                         <label for="origin">Origin:</label>
@@ -59,14 +67,7 @@
                     </div>
                  </div>
             </div>
-            <div class="buttons d-flex justify-content-around flex-wrap">
-                <button class="btn btn-primary m-2" onclick="handleButton('all')">Show All Stores</button>
-                <button class="btn btn-primary m-2" onclick="handleButton('Turkstra Lumber')">Show Turkstra Lumber</button>
-                <button class="btn btn-primary m-2" onclick="handleButton('Home Depot')">Show Home Depot</button>
-                <button class="btn btn-primary m-2" onclick="handleButton('Home Hardware')">Show Home Hardware</button>
-                <button class="btn btn-primary m-2" onclick="handleButton('RONA')">Show Rona</button>
-                <button class="btn btn-success m-2" id="geolocate">Show My Location</button>
-            </div>
+            
             <div class="container mt-5">
                 <h3>Add a new Marker</h3>
                 <form id="markerForm">

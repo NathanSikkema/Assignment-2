@@ -24,3 +24,32 @@
 .listed-item-address {
     font-size: 14px !important;
 }
+#main-section {
+    display: flex; 
+    flex-direction: row; 
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+#main-section > .col-md-9 {
+    flex: 0 0 75%;
+}
+#main-section > .col-md-3, .col-md-12 {
+    flex: 0 0 25%;
+}
+@media screen and (max-width: 600px) {
+    #main-section {
+        flex-direction: column;
+    }
+    #main-section > div {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .buttons button {
+        font-size: 14px !important;
+    }
+    #map {
+        aspect-ratio: 1/1;
+        zoom: 60%;
+    }
+}
