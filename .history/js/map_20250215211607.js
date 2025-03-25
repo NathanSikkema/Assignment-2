@@ -1,21 +1,3 @@
-/*
-    Author............ : Nathan Sikkema
-    Student Number.... : 000911571
-    Program........... : Software Development
-    Course............ : Mobile Web Programming
-    Type.............. : JavaScript
-    Start Date........ : 2025 02 14
-    End Date.......... : 2025 02 17
-    Due Date.......... : 2025 02 16
-    Duration.......... : 3 Days
-    Late Days used.... : 1
-    Last Modified..... : 2025 02 17
-    
-    StAuth10244: I Nathan Sikkema, 000911571 certify that this material is my original work. 
-    No other person's work has been used without due acknowledgement. 
-    I have not made my work available to anyone else.
-*/
-
 // See the official Google Map documentation here:
 // https://developers.google.com/maps/documentation/javascript/overview
 
@@ -169,9 +151,7 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-    }
-    handleButton("all");
-}
+    }}
 async function getNearestAddress(latlng) {
     // This function calculates the nearest address to the user's location.
     return new Promise((resolve, reject) => {
@@ -306,7 +286,7 @@ function updateLocationsList() {
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });
-                map.setZoom(14);
+                map.setZoom(32);
             });
             listItem.addEventListener("mouseover", () => {
                 listItem.style.cursor = "pointer";

@@ -1,21 +1,3 @@
-/*
-    Author............ : Nathan Sikkema
-    Student Number.... : 000911571
-    Program........... : Software Development
-    Course............ : Mobile Web Programming
-    Type.............. : JavaScript
-    Start Date........ : 2025 02 14
-    End Date.......... : 2025 02 17
-    Due Date.......... : 2025 02 16
-    Duration.......... : 3 Days
-    Late Days used.... : 1
-    Last Modified..... : 2025 02 17
-    
-    StAuth10244: I Nathan Sikkema, 000911571 certify that this material is my original work. 
-    No other person's work has been used without due acknowledgement. 
-    I have not made my work available to anyone else.
-*/
-
 // See the official Google Map documentation here:
 // https://developers.google.com/maps/documentation/javascript/overview
 
@@ -29,8 +11,8 @@ let directionsService;
 let directionsRenderer;
 let userLocationSet = false;
 
+// Initialize the map and load markers
 async function initMap() {
-    // Initialize the map and load markers
     geocoder = new google.maps.Geocoder();
     locations = await loadLocationsData();
     directionsService = new google.maps.DirectionsService();
@@ -65,7 +47,6 @@ async function initMap() {
 }
 
 async function loadLocationsData() {
-    // This function fetches the JSON file containing all the locations and store information.
     try {
         const response = await fetch("json/location-info.json");
         if (!response.ok) {
@@ -80,7 +61,6 @@ async function loadLocationsData() {
 }
 
 function generateLocations(storeData, store) {
-    // This function generates the markers for each location of a store.
     for (const locationName in storeData.locations) {
         if (storeData.locations.hasOwnProperty(locationName)) {
             let locationData = storeData.locations[locationName];
@@ -131,7 +111,6 @@ function generateLocations(storeData, store) {
 }
 
 function handleButton(filter) {
-    // This function filters the markers based on the button the user clicks.
     markers.forEach(marker => {
         if (marker.storeType.toLowerCase() === filter.toLowerCase() || filter.toLowerCase() === "all") {
             marker.setMap(map);
@@ -142,7 +121,6 @@ function handleButton(filter) {
 }
 
 async function showPositionOnMap(position) {
-    // This function centers the map on the user's location and creates a marker there.
     const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
     map.setCenter(userLocation);
     const icon_content = document.createElement("img");
@@ -169,15 +147,13 @@ async function showPositionOnMap(position) {
         userMarkers.push(user_location);
         userLocationSet = true;
         updateLocationsList();
-    }
-    handleButton("all");
-}
+    }}
 async function getNearestAddress(latlng) {
-    // This function calculates the nearest address to the user's location.
     return new Promise((resolve, reject) => {
         geocoder.geocode({ location: latlng }, function(results, status) {
             if (status === "OK") {
                 if (results[0]) {
+                    // Resolve the Promise with the formatted address
                     resolve(results[0].formatted_address);
                 } else {
                     console.log("No results found");
@@ -191,13 +167,12 @@ async function getNearestAddress(latlng) {
     });
 }
 
+// call showPositionOnMap after finding the user's current location
 document.getElementById("geolocate").addEventListener("click",() =>{
-    // call showPositionOnMap after finding the user's current location
     navigator.geolocation.getCurrentPosition(showPositionOnMap);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // This handles when the user clicks one of the filter buttons at the bottom of the page.
     document.querySelectorAll(".btn").forEach(button => {
         button.addEventListener("click", function () {
             const filter = this.textContent.replace("Show ", "").replace(" Stores", "").trim();
@@ -208,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function codeAddress(e) {
-    // The bulk of this function was found in the modules.
     e.preventDefault();
     let address = document.getElementById('address').value;
     let title = document.getElementById('title').value;
@@ -276,7 +250,8 @@ function updateLocationsList() {
             lat: marker.position.lat, 
             lng: marker.position.lng, 
             address: marker.address, 
-            link: marker.link 
+            link: marker.link,
+            isCustom: marker.isCustom
         });
     });
 
@@ -302,7 +277,7 @@ function updateLocationsList() {
         storeLocations.forEach(location => {
             let listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
-            listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address: ${(location.link !== "#") ? `<a href="${location.link}" target="_blank">${location.address}</a>` : location.address}</span>`;
+            listItem.innerHTML = `<strong>${location.name}</strong> <br> <span class="listed-item-address">Address:` + location.isCustom ? `${location.address}`: `<a href="${location.link}" target="_blank">${location.address}</a></span>`;
             storeList.appendChild(listItem);
             listItem.addEventListener("click", () => {
                 map.setCenter({ lat: location.lat, lng: location.lng });
